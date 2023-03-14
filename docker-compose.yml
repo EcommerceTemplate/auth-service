@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - 27017:27017
+  app:
+    build: .
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/login-service
+    ports:
+      - 3000:3000
