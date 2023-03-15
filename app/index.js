@@ -1,12 +1,14 @@
 const express = require('express');
+const connectDB = require('../app/src/config/db');
 
 const app = express();
 
+connectDB();
+
 app.get('/', (req, res) => {
-  res.send('¡Hola, mundo!');
+  res.send('Hello World!');
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor en ejecución en el puerto ${PORT}`);
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
 });
