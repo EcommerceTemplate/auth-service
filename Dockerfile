@@ -1,14 +1,17 @@
-FROM node:14-alpine
+FROM node:14-buster-slim
 
 WORKDIR /app
 
-RUN mkdir -p /app/data
-COPY /app/package*.json ./
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+RUN chown -R appuser:appuser /app
+
+COPY package*.json ./
+RUN npm install --production
+
 COPY /app/index.js ./
 
-RUN npm install
-COPY . .
+USER appuser
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run" ,"dev"]

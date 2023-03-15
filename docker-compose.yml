@@ -14,3 +14,5 @@ services:
       - MONGO_URL=mongodb://mongo:27017/login-service
     ports:
       - 3000:3000
+    volumes:
+      - ./app:/app
