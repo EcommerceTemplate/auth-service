@@ -1,2 +1,4 @@
+.DS_STORE
 data
 app/.env
+app/node_modules

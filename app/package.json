@@ -1,14 +1,30 @@
 {
-  "name": "login-service",
+  "name": "ecommerce",
   "version": "1.0.0",
-  "description": "Mi aplicación",
+  "description": "it is a first version ",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development nodemon index.js"
+    "test": "dev",
+    "dev": "nodemon index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EcommerceTemplate/login-service.git"
+  },
+  "keywords": [
+    "nbaka"
+  ],
+  "author": "nbaka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EcommerceTemplate/login-service/issues"
+  },
+  "homepage": "https://github.com/EcommerceTemplate/login-service#readme",
   "dependencies": {
+    "express": "^4.18.2"
   },
   "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
