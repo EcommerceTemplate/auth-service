@@ -1,22 +1,27 @@
-# ECOMMERCE TEMPLATE - AUTH SERVICE 
+# ECOMMERCE  AUTH-SERVICE
 
-Descripción corta del proyecto.
+Short project description.
 
-## Requisitos
+## Requirements
 
-Antes de ejecutar este proyecto, asegúrese de tener instalados los siguientes programas:
+Before running this project, make sure you have the following programs installed:
 
 - Docker
 
+## Configuration
 
-## Configuración
+Before running the project, you need to configure some environment variables. To do so, copy the `.env.example` file and rename it to `.env`. Then, edit the `.env` file and replace the values of the environment variables as needed.
 
-Antes de ejecutar el proyecto, es necesario configurar algunas variables de entorno. Para ello, copie el archivo `.env.example` y renómbrelo como `.env`. A continuación, edite el archivo `.env` y reemplace los valores de las variables de entorno según sea necesario.
+## Execution
 
-## Ejecución
+To run the project, simply run the following command in the root of the project: 
 
-Para ejecutar el proyecto, simplemente ejecute el siguiente comando en la raíz del proyecto: 
 - docker-compose up
 
+This will start the Docker container and run the application on the port configured in the `.env` file.
 
+
+## License
+
+This project is licensed under the MIT License.
 
