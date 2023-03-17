@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); 
 
 const productionConfig = {
     port: process.env.PORT || 3000,

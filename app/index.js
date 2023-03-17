@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const env = process.env.NODE_ENV;
 
 const connectDB = require('../app/src/config/db');
-const configEnv = require(`./src/config/config.${env}.js`);
+const configEnv = require(`./src/config/config.${env}.js`); 
 
 const app = express();
 const port = configEnv.port || 3000;

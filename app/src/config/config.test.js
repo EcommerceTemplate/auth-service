@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); 
 
 const testingConfig = {
     port: process.env.PORT || 3000,
