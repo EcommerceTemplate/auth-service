@@ -6,7 +6,8 @@ services:
       - ./data:/data/db
     ports:
       - 27017:27017
-  app:
+
+  auth:
     build: .
     depends_on:
       - mongo
@@ -16,3 +17,19 @@ services:
       - 3000:3000
     volumes:
       - ./app:/app
+  nagios:
+    image: jasonrivers/nagios:latest
+    ports:
+      - "8080:80"
+      - "5666:5666"
+    environment:
+      - NAGIOS_FQDN=nagios.example.com
+      - NAGIOSADMIN_USER=nagiosadmin
+      - NAGIOSADMIN_PASS=nagiosadminpass
+      - NAGIOS_TIMEZONE=America/New_York
+    volumes:
+      - ./nagios/etc:/opt/nagios/etc
+      - ./nagios/var:/opt/nagios/var
+      - ./nagios/plugins:/opt/nagios/plugins
+      - ./nagios/objects:/opt/nagios/objects
+      - ./nagios/init:/opt/nagios/init
