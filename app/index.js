@@ -1,28 +1,34 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-
-const connectDB = require('../app/src/config/db');
-
-const app = express();
-
-connectDB();
+const userRoutes = require('./src/routes/userRoute');
 
 dotenv.config();
 
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const env = process.env.NODE_ENV;
+
+const connectDB = require('../app/src/config/db');
+const configEnv = require(`./src/config/config.${env}.js`);
+
+const app = express();
+const port = configEnv.port || 3000;
+
+connectDB();
+
 app.use(helmet());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(morgan('combined'));
 app.use(cors());
+
+app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+app.listen(port, () => {
+  console.log(`Server running on port: ${port}`);
 });
