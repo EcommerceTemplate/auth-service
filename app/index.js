@@ -7,7 +7,7 @@ dotenv.config();
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV || 'dev';
 
 const connectDB = require('../app/src/config/db');
 const configEnv = require(`./src/config/config.${env}.js`);

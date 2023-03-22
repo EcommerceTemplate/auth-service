@@ -1,8 +1,8 @@
-require('dotenv').config(); 
+require('dotenv').config();
 
 const development = {
     port: process.env.PORT || 3000,
-    dbUrl: process.env.MONGO_URI_DEV,
+    dbUri: process.env.MONGO_URL,
     //sessionSecret: process.env.SESSION_SECRET_PROD
 };
 
