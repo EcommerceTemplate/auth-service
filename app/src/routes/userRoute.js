@@ -1,7 +1,13 @@
 const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/userControllers');
+const userRoutes = express.Router();
+const { createUser } = require('../controllers/userControllers');
+const userSchema = require('../validations/userValidation');
+const { middlewareSchemaValidation } = require('./middlewares');
+const { errorHandler } = require('./middlewares')
 
-router.post('/users', userController.createUser);
+userRoutes.route('/users')
+    .post(middlewareSchemaValidation(userSchema), createUser);
 
-module.exports = router;
+userRoutes.use(errorHandler)
+
+module.exports = userRoutes;
