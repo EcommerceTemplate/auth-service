@@ -30,6 +30,7 @@
     "helmet": "^6.0.1",
     "http-status": "^1.6.2",
     "joi": "^17.8.4",
+    "mongodb-memory-server": "^8.12.1",
     "mongoose": "^7.0.2",
     "morgan": "^1.10.0"
   },

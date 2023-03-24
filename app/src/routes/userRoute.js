@@ -5,7 +5,7 @@ const userSchema = require('../validations/userValidation');
 const { middlewareSchemaValidation, } = require('../middlewares/schemeValidation');
 const errorHandler = require('../middlewares/errorHandler')
 
-userRoutes.route('/users')
+userRoutes.route('/')
     .post(middlewareSchemaValidation(userSchema), createUser);
 
 userRoutes.use(errorHandler)

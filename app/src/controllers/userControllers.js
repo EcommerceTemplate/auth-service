@@ -4,7 +4,7 @@ const status = require('http-status');
 const createUser = async (req, res, next) => {
     try {
         const user = await userService.createUser(req.body);
-        res.status(status._CREATED).json(user);
+        res.status(status.CREATED).json(user);
     } catch (error) {
         next(error);
     }
