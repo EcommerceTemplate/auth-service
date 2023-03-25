@@ -1,20 +1,22 @@
-const Joi = require('joi');
 const Boom = require('@hapi/boom');
-const validation = (objeto, schema) => {
-    const result = Joi.validate(objeto, schema);
-    if (result.error) {
-        throw Boom.badData(result.error.details[0].message, result.error.details);
+
+const validation = async (objeto, schema) => {
+    try {
+        await schema.validateAsync(objeto);
+    } catch (error) {
+        throw Boom.badData(error.details[0].message, error.details);
     }
-}
+};
+
 const middlewareSchemaValidation = (schema) => {
-    return function (req, res, next) {
+    return async function (req, res, next) {
         try {
-            validation(req.body, schema);
+            await validation(req.body, schema);
             next();
         } catch (error) {
             res.status(error.output.statusCode).json(error.output.payload);
         }
     };
-}
+};
 
 module.exports = { middlewareSchemaValidation };

@@ -1,8 +1,8 @@
-require('dotenv').config(); 
+require('dotenv').config();
 
 const testingConfig = {
-    port: process.env.PORT || 3000,
-    dbUrl: process.env.MONGO_URI_TEST,
+    port: 3001,
+    dbUri: process.env.MONGO_URI_TEST,
     //sessionSecret: process.env.SESSION_SECRET_TEST
 };
 
