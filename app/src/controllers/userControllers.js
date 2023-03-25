@@ -5,20 +5,12 @@ const createUser = async (req, res, next) => {
     try {
         const userExistsForUsername = await userService.findUserByUsername(req.body.username);
         const userExistsForEmail = await userService.findUserByEmail(req.body.email);
-
-        if (userExistsForUsername) {
+        if (userExistsForUsername || userExistsForEmail) {
             res.status(status.BAD_REQUEST).json({
-                message: `User with username ${req.body.username} exists.`
+                message: `the user already exists.`
             });
             return;
         }
-        if (userExistsForEmail) {
-            res.status(status.BAD_REQUEST).json({
-                message: `User with email ${req.body.email} exists.`
-            });
-            return;
-        }
-
         const user = await userService.createUser(req.body);
         const { username, email } = user;
         res.status(status.CREATED).json({
