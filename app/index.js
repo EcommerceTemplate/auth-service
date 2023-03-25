@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const userRoutes = require('./src/routes/userRoute');
+const authRoutes = require('./src/routes/authRoute')
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(morgan('combined'));
 app.use(cors());
 
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes)
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
