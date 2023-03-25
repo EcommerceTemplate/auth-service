@@ -1,4 +1,6 @@
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const status = require('http-status');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -33,6 +35,16 @@ const UserSchema = new mongoose.Schema({
         default: Date.now,
     },
 });
+
+//method for encrypt password
+UserSchema.methods.encryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    return bcrypt.hash(password, salt);
+}
+//method for validate password
+UserSchema.methods.validatePassword = function (password) {
+    return bcrypt.compare(password, this.password)
+};
 
 const UserModel = mongoose.model('User', UserSchema);
 
