@@ -1,5 +1,6 @@
 const userRepository = require('../repositories/userRepository');
 const UserModel = require('../models/user');
+const generateToken = require('../functions/jsonwebtoken');
 
 const createUser = async (body) => {
     try {
@@ -10,6 +11,17 @@ const createUser = async (body) => {
             throw new Error('Failed to create user');
         }
         return user;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const login = async (body) => {
+    try {
+        //generate token
+        const token = generateToken.accessToken(body);
+        return token;
+
     } catch (error) {
         throw error;
     }
@@ -33,4 +45,4 @@ const findUserByEmail = async (email) => {
     }
 };
 
-module.exports = { createUser, findUserByUsername, findUserByEmail };
+module.exports = { createUser, login, findUserByUsername, findUserByEmail };

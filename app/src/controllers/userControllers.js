@@ -28,4 +28,30 @@ const createUser = async (req, res, next) => {
         next(error);
     }
 };
-module.exports = { createUser }
+
+const login = async (req, res, next) => {
+    try {
+        const user = await userService.findUserByEmail(req.body.email);
+        if (!user) {
+            res.status(status.BAD_REQUEST).json({
+                message: `User with email ${req.body.email} no exists.`
+            });
+            return;
+        }
+        const isPasswordCorrect = await user.validatePassword(req.body.password, user.password);
+        if (!isPasswordCorrect) {
+            res.status(status.BAD_REQUEST).json({
+                message: `Password wrong.`
+            });
+            return;
+        }
+        const token = await userService.login(req.body);
+        res.status(status.OK).json({
+            token
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = { createUser, login }
