@@ -1,11 +1,12 @@
 const request = require('supertest');
-const app = require('../app');
+const app = require('../index');
 const mongoose = require('mongoose');
-const User = require('../models/user');
+const User = require('../src/models/user');
+const { dbUri } = require('../src/config/config.test')
 
 describe('User endpoints', () => {
     beforeAll(async () => {
-        await mongoose.connect('mongodb://localhost/testdb', {
+        await mongoose.connect(dbUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -19,7 +20,7 @@ describe('User endpoints', () => {
         await mongoose.connection.close();
     });
 
-    describe('POST /users', () => {
+    describe('POST http://localhost:3000/api/users', () => {
         test('Should create a new user', async () => {
             const newUser = {
                 username: 'testuser',
@@ -31,7 +32,7 @@ describe('User endpoints', () => {
             };
 
 
-            const res = await request(app).post('/users').send(newUser).expect(201);
+            const res = await request(app).post('/api/users').send(newUser).expect(201);
 
             expect(res.body).toMatchObject(newUser);
 

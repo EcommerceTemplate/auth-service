@@ -9,6 +9,8 @@ COPY package*.json ./
 RUN npm install --production
 
 COPY /app/index.js ./
+RUN mkdir -p /home/appuser && chown -R appuser:appuser /home/appuser && chmod -R 755 /home/appuser
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev
 
 USER appuser
 
